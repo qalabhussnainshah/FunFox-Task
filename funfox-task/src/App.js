@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import { TaskProvider } from "./context/TaskContext";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { ToastContainer } from "react-toastify"; // Imported the ToastContainer
+import "react-toastify/dist/ReactToastify.css"; // Imported the CSS for toast notifications
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <TaskProvider>
+        <div className="app">
+          <h1 className="title">FunFox Task</h1>
+          <TaskForm />
+          <TaskList />
+          <ToastContainer position="top-right" />{" "}
+        </div>
+      </TaskProvider>
+    </DndProvider>
   );
-}
+};
 
 export default App;
